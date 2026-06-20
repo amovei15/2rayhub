@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>v2RayTun не работает — разбор типовых проблем и решений</title>
+<meta name="description" content="v2RayTun не работает: типовые причины и решения. Что делать, если приложение не подключается, соединение рвётся, пинг высокий или TLS-рукопожатие падает с ошибкой.">
+<meta name="theme-color" content="#0a0b14">
+<meta name="yandex-verification" content="39e4734c9e29e096">
+<link rel="canonical" href="https://2rayhub.com/problemy/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://2rayhub.com/problemy/">
+<meta property="og:title" content="v2RayTun не работает — разбор типовых проблем и решений">
+<meta property="og:description" content="v2RayTun не работает: типовые причины и решения. Что делать, если приложение не подключается, соединение рвётся, пинг высокий или TLS-рукопожатие падает с ошибкой.">
+<meta property="og:site_name" content="v2RayTun">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="/assets/styles.css?v=5">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://2rayhub.com/#org", "name": "v2RayTun", "url": "https://2rayhub.com/", "logo": "https://2rayhub.com/favicon.svg"}, {"@type": "WebSite", "@id": "https://2rayhub.com/#site", "url": "https://2rayhub.com/", "name": "v2RayTun", "inLanguage": "ru-RU", "publisher": {"@id": "https://2rayhub.com/#org"}}]}</script>
+
+</head>
+<body><header class="nav">
+  <div class="nav-inner">
+    <a href="/" class="brand"><span class="brand-mark">V</span>v2RayTun</a>
+    <nav class="nav-links" aria-label="Главное меню"><a href="/">Главная</a><a href="/skachat-v2raytun/">Скачать</a><a href="/podpiska/">Подписка</a><a href="/konfigi/">Конфиги</a><a href="/podklyuchenie/">Подключение</a><a href="/pk/">ПК</a><a href="/android/">Android</a><a href="/ios/">iPhone</a><a href="/tv/">TV</a><a href="/problemy/" aria-current="page">Проблемы</a><a href="/faq/">FAQ</a></nav>
+    <a href="https://lk.chekdns.click/" class="nav-cta"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;vertical-align:-2px"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"/></svg>Получить на email</a>
+    <button class="nav-burger" type="button" aria-label="Меню" onclick="document.querySelector('.drawer').classList.toggle('open')">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</header>
+<nav class="drawer" aria-label="Мобильное меню"><a href="/">Главная</a><a href="/skachat-v2raytun/">Скачать</a><a href="/podpiska/">Подписка</a><a href="/konfigi/">Конфиги</a><a href="/podklyuchenie/">Подключение</a><a href="/pk/">ПК</a><a href="/android/">Android</a><a href="/ios/">iPhone</a><a href="/tv/">TV</a><a href="/problemy/" aria-current="page">Проблемы</a><a href="/faq/">FAQ</a><a href="https://lk.chekdns.click/" class="btn btn-primary" style="margin-top:14px;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;vertical-align:-2px"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"/></svg>Получить на email</a></nav><section class="hero">
+  <div class="wrap hero-inner">
+    <div>
+      <span class="hero-tag"><span class="pulse"></span>Диагностика · починка</span>
+      <h1>v2RayTun не работает? <span class="grad">Разбор</span> типовых проблем</h1>
+      <p class="lead">Если приложение перестало подключаться или соединение рвётся — ниже разобраны самые частые причины. В большинстве случаев починка укладывается в две-три минуты.</p>
+      <div class="cta-pair">
+      <a href="https://lk.chekdns.click/" class="btn btn-primary"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;vertical-align:-2px"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"/></svg>Получить на email</a>
+      <a href="https://t.me/tgbpn_bot?start=utm_2rayhub" class="btn btn-ghost"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:6px;vertical-align:-2px"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.24 3.64 11.94c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>Получить в Телеграм</a>
+    </div>
+      <div class="hero-stats">
+      <div><strong>6 локаций</strong><span>Европа · США</span></div>
+      <div><strong>VLESS Reality</strong><span>протокол</span></div>
+      <div><strong>3 устройства</strong><span>в подписке</span></div>
+    </div>
+    </div>
+    
+  </div>
+</section><section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Чек-лист</span>
+      <h2>Что чаще всего ломается</h2>
+    </div>
+    <div class="grid-2">
+      <div class="feat"><div class="feat-ico">🔄</div><h3>Ошибка TLS-рукопожатия</h3><p>Профиль устарел или сервер на проф-обслуживании. В боте нажми «Обновить профиль» — придёт новая ссылка, в приложении замени старую.</p></div>
+      <div class="feat"><div class="feat-ico">⏱️</div><h3>Тайм-аут подключения</h3><p>Сеть оператора режет VLESS-трафик. Помогает смена fingerprint (новый профиль из бота автоматически берёт другой fingerprint), либо смена сервера на менее «горячий».</p></div>
+      <div class="feat"><div class="feat-ico">🚫</div><h3>Не подключается совсем</h3><p>Проверь, что в системных настройках VPN-конфигурация v2RayTun существует и активна. На iOS зайди в Настройки → VPN → v2RayTun и убедись, что он включён.</p></div>
+      <div class="feat"><div class="feat-ico">🐌</div><h3>Высокий пинг</h3><p>Скорее всего, ты на дальнем сервере. Открой v2RayTun, выбери ближайший географически (Финляндия и Польша — для запада России, Германия — универсально).</p></div>
+    </div>
+  </div>
+</section><section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Разбор</span>
+      <h2>Если v2RayTun не работает — подробно</h2>
+    </div>
+    <div class="prose">
+      <h3>v2RayTun не подключается — почему</h3>
+      <p>Самая частая причина — устаревший или просроченный профиль. В боте нажми «Мои подписки» → «Обновить профиль». Тебе пришлют свежую ссылку — скопируй её и замени старую в приложении (Долгий тап на старом профиле → «Удалить», потом обычным образом добавь новый из буфера).</p>
+      <p>Вторая причина — оператор режет конкретный fingerprint TLS-рукопожатия. Это решается тоже сменой профиля: в новом будет другой fingerprint, который этот оператор пропустит.</p>
+      <h3>v2RayTun ошибка ядра (xray)</h3>
+      <p>Внутри v2RayTun используется ядро Xray для обработки VLESS-протокола. Иногда оно падает после обновления приложения, если профиль остался от старой версии. Решение: удалить профиль, добавить заново из бота. В 95% случаев помогает.</p>
+      <h3>v2RayTun ошибка загрузки гео-файлов</h3>
+      <p>Geo-файлы — это списки доменов, которые v2RayTun маршрутизирует напрямую (без VPN-туннеля). Файлы скачиваются с GitHub. Если у тебя в сети заблокирован GitHub — гео-файлы не подтянутся.</p>
+      <p>Решение: открой настройки v2RayTun → «Гео-файлы» → выбери альтернативный источник (там есть зеркала Gitee и Gitea). После смены источника перезапусти приложение.</p>
+      <h3>Пинг в v2RayTun высокий — что делать</h3>
+      <p>Зайди в список серверов и проверь пинг до каждого. Открой настройки маршрутизации и убедись, что включено «Тестировать пинг при подключении» — тогда v2RayTun автоматически выберет самый быстрый сервер. Финляндия обычно дает 15-25 мс для северо-запада, Германия — 25-40 мс, Польша — 18-30 мс.</p>
+      <h3>v2RayTun обход белых списков — не получается</h3>
+      <p>В корпоративных сетях с белыми списками иногда не пропускают даже VLESS Reality. Проверь в боте раздел «Серверы для строгих сетей» — там есть отдельные конфигурации специально под такие ограничения, использующие другие порты и SNI.</p>
+    </div>
+  </div>
+</section><section class="section">
+  <div class="wrap"><div class="faq"><details><summary>Что делать, если v2RayTun не работает совсем?</summary><div class="ans">Сначала переустанови приложение и заново импортируй профиль из бота. Если не помогло — напиши в чат бота «Не работает», там разберутся в течение нескольких минут.</div></details><details><summary>v2RayTun глушилки — как обойти?</summary><div class="ans">В строгих сетях помогают альтернативные конфиги «для жёстких сетей» — они есть в боте отдельным разделом. Используют нестандартные порты и SNI крупных сайтов.</div></details><details><summary>Если сервер v2RayTun не работает — что делать?</summary><div class="ans">Переключись на другой в приложении. Если все недоступны — напиши в бота «Серверы упали», обычно проблема решается в течение 15 минут.</div></details><details><summary>v2RayTun не запускается после обновления Android — что делать?</summary><div class="ans">Очисти кэш приложения (Настройки → Приложения → v2RayTun → Очистить кэш), потом перезапусти. Если не помогло — переустанови.</div></details><details><summary>Можно ли использовать v2RayTun без подписки?</summary><div class="ans">Без активного профиля приложение не подключится. Но есть пробный период 3 дня — этого хватит, чтобы протестировать.</div></details></div><div class="cta-banner">
+  <div>
+    <h3>Не получается разобраться?</h3>
+    <p>Активируй профиль в Telegram-боте — в чате поддержки помогут с конкретной проблемой за минуты.</p>
+  </div>
+  <div class="cta-pair">
+    <a href="https://lk.chekdns.click/" class="btn btn-primary btn-sm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;vertical-align:-2px"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"/></svg>Получить на email</a>
+    <a href="https://t.me/tgbpn_bot?start=utm_2rayhub" class="btn btn-ghost btn-sm"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:6px;vertical-align:-2px"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.24 3.64 11.94c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>Получить в Телеграм</a>
+  </div>
+</div></div></section><section class="section">
+  <div class="wrap">
+    <span class="eyebrow">Часто ищут</span>
+    <h2>Часто спрашивают про v2RayTun</h2>
+    <p class="lead" style="margin-bottom:18px">Популярные запросы по приложению v2RayTun — от установки и подписки до решения проблем.</p>
+    <div class="kw-cloud"><span class="kw-chip">Не работает v2raytun</span><span class="kw-chip">V2raytun не работает</span><span class="kw-chip">V2raytun почему не работает</span><span class="kw-chip">V2raytun перестал</span><span class="kw-chip">V2raytun перестал работать</span><span class="kw-chip">V2raytun ошибка</span><span class="kw-chip">V2raytun не работает что делать</span><span class="kw-chip">V2raytun не работает на айфоне</span><span class="kw-chip">V2raytun не работает сегодня</span><span class="kw-chip">V2raytun не работает пк</span><span class="kw-chip">Не работает v2raytun на пк</span><span class="kw-chip">V2raytun на пк не работает</span><span class="kw-chip">V2raytun не работает на пк</span><span class="kw-chip">Что делать если v2raytun не работает</span><span class="kw-chip">V2raytun что делать если не работает</span><span class="kw-chip">V2raytun не работает андроид</span><span class="kw-chip">V2raytun не работает на андроид</span><span class="kw-chip">V2raytun не подключается</span><span class="kw-chip">V2raytun не работает интернет</span><span class="kw-chip">Почему перестал работать v2raytun</span><span class="kw-chip">Почему не работает v2raytun на айфоне</span><span class="kw-chip">V2ray tun не работает</span><span class="kw-chip">V2raytun ошибка 502</span><span class="kw-chip">Приложение v2raytun не работает</span><span class="kw-chip">V2raytun ошибка при импорте конфигурации</span><span class="kw-chip">V2raytun почему не работает андроид</span><span class="kw-chip">V2raytun при импорте возникла ошибка</span><span class="kw-chip">Возникла ошибка при импорте конфигурации v2raytun</span><span class="kw-chip">V2raytun не работает на телефоне</span><span class="kw-chip">V2raytun не работает телеграмм</span><span class="kw-chip">V2raytun не запускается</span><span class="kw-chip">V2raytun выдает ошибку</span><span class="kw-chip">V2raytun не работает 2026</span><span class="kw-chip">V2raytun не работает телеграм</span><span class="kw-chip">V2raytun перестал работать что делать</span><span class="kw-chip">V2raytun почему не работает интернет</span><span class="kw-chip">Почему v2raytun не работает на пк</span><span class="kw-chip">V2raytun не работает на мобильном интернете</span><span class="kw-chip">Почему v2raytun не работает на телефоне</span><span class="kw-chip">V2raytun вылетает</span></div>
+  </div>
+</section><footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <a href="/" class="brand"><span class="brand-mark">V</span>v2RayTun</a>
+      <p>Сайт-навигатор по приложению v2RayTun: подписка, конфигурации, инструкции по запуску на Windows, Android, iOS и TV-приставках.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Загрузка</h5>
+      <ul>
+        <li><a href="/skachat-v2raytun/">Все платформы</a></li>
+        <li><a href="/pk/">Windows / Mac</a></li>
+        <li><a href="/android/">Android и APK</a></li>
+        <li><a href="/ios/">iPhone / iPad</a></li>
+        <li><a href="/tv/">Android TV</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Сервис</h5>
+      <ul>
+        <li><a href="/podpiska/">Тариф v2RayTun Plus</a></li>
+        <li><a href="/konfigi/">Конфигурации</a></li>
+        <li><a href="/podklyuchenie/">Подключение</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Помощь</h5>
+      <ul>
+        <li><a href="/problemy/">Если не работает</a></li>
+        <li><a href="/faq/">Частые вопросы</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-contacts">
+    <div class="fc-group">
+      <h5>Связаться</h5>
+      <div class="fc-grid">
+        <a class="fc-card" href="tel:88007001234">
+          <span class="fc-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+          <div><b>8 800 700-12-34</b><span>Бесплатно по России</span></div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+</body></html>
