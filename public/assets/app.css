@@ -12,7 +12,7 @@ h3{font-size:19px;font-weight:700}
 .vk-h2{text-align:center;margin-bottom:8px}
 .vk-sub{text-align:center;color:var(--mut);margin-bottom:28px}
 /* header */
-.vk-hdr{position:sticky;top:0;z-index:50;background:rgba(13,14,18,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.vk-hdr{position:sticky;top:0;z-index:50;background:rgba(13,14,18,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 .vk-hdr-in{display:flex;align-items:center;gap:18px;height:64px}
 .vk-logo{font-weight:800;font-size:20px;letter-spacing:-.02em}
 .vk-logo-mk{background:linear-gradient(135deg,var(--amb),var(--amb2));-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -118,6 +118,8 @@ h3{font-size:19px;font-weight:700}
 /* mobile */
 @media(max-width:900px){
  .vk-nav{display:none}.vk-burger{display:flex}
+ .vk-hdr{background:#0d0e12;backdrop-filter:none}
+ body.vk-open .vk-mnav{background:#0d0e12}
  .vk-hero-in{grid-template-columns:1fr;gap:28px}
  .vk-bento{grid-template-columns:1fr}
  .vk-plans{grid-template-columns:repeat(2,1fr)}

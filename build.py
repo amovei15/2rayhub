@@ -47,7 +47,7 @@ def head(title, desc, path, og_type="website"):
         metr = f"""<script>(function(m,e,t,r,i,k,a){{m[i]=m[i]||function(){{(m[i].a=m[i].a||[]).push(arguments)}};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){{if(document.scripts[j].src===r){{return}}}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)}})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");ym({METRIKA_ID},"init",{{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true}});</script>"""
     canon = BASE + path
     og = f"""<meta property="og:type" content="{og_type}">
-<meta property="og:site_name" content="v2ray2tun">
+<meta property="og:site_name" content="2rayhub">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{esc(desc)}">
@@ -470,7 +470,7 @@ h3{font-size:19px;font-weight:700}
 .vk-h2{text-align:center;margin-bottom:8px}
 .vk-sub{text-align:center;color:var(--mut);margin-bottom:28px}
 /* header */
-.vk-hdr{position:sticky;top:0;z-index:50;background:rgba(13,14,18,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.vk-hdr{position:sticky;top:0;z-index:50;background:rgba(13,14,18,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 .vk-hdr-in{display:flex;align-items:center;gap:18px;height:64px}
 .vk-logo{font-weight:800;font-size:20px;letter-spacing:-.02em}
 .vk-logo-mk{background:linear-gradient(135deg,var(--amb),var(--amb2));-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -576,6 +576,8 @@ h3{font-size:19px;font-weight:700}
 /* mobile */
 @media(max-width:900px){
  .vk-nav{display:none}.vk-burger{display:flex}
+ .vk-hdr{background:#0d0e12;backdrop-filter:none}
+ body.vk-open .vk-mnav{background:#0d0e12}
  .vk-hero-in{grid-template-columns:1fr;gap:28px}
  .vk-bento{grid-template-columns:1fr}
  .vk-plans{grid-template-columns:repeat(2,1fr)}
@@ -614,7 +616,7 @@ def build():
     if os.path.exists(og_src): shutil.copy(og_src, os.path.join(OUT, "og.png"))
     paths = []
     for p in PAGES:
-        paths.append(page(p["slug"], p["title"], p["desc"], p["h1"], p["body"], p.get("cluster"), p.get("faqs")))
+        paths.append(page(p["slug"], p["title"], p["desc"], p["h1"], p["body"], p.get("cluster"), p.get("faqs"), p.get("dl", False)))
     paths.append(blog_index_page())
     for a in ARTICLES:
         paths.append(article_page(a))
