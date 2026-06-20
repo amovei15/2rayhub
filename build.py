@@ -12,7 +12,7 @@ TG = "https://t.me/tgbpn_bot?start=utm_v2ray2tuncom"
 INDEXNOW_KEY = "8b3d1f6a9c2e47d05a8f1b6c3e9d2a74"
 METRIKA_ID = ""
 YA_VERIFY = "3faddb3cefb5ec4f"
-CSSV = "5"
+CSSV = "v3"
 
 KW = json.load(open(os.path.join(ROOT, "keywords.json"), encoding="utf-8"))
 TOP = KW["hero"]
@@ -64,52 +64,52 @@ def head(title, desc, path, og_type="website"):
 <link rel="canonical" href="{canon}">
 {og}
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" href="/favicon.svg?v={CSSV}" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/app.css?v={CSSV}">{metr}
 </head><body>"""
 
 def header():
     nav = "".join(f'<a href="{u}">{esc(t)}</a>' for t, u in NAV)
-    return f"""<header class="vk-hdr"><div class="vk-wrap vk-hdr-in">
-<a class="vk-logo" href="/"><span class="vk-logo-mk">v2</span>raytun<span class="vk-logo-dot">·keys</span></a>
-<nav class="vk-nav">{nav}</nav>
-<a class="vk-btn vk-btn-sm" href="{LK}">Получить ключ</a>
-<button class="vk-burger" aria-label="Меню" onclick="document.body.classList.toggle('vk-open')"><span></span><span></span><span></span></button>
-</div><div class="vk-mnav">{nav}</div></header>"""
+    return f"""<header class="hp-hdr"><div class="hp-wrap hp-hdr-in">
+<a class="hp-logo" href="/"><span class="hp-logo-mark"></span><span class="hp-logo-tx">2rayhub<span class="hp-logo-dot">.</span></span></a>
+<nav class="hp-nav">{nav}</nav>
+<a class="hp-btn hp-btn-sm" href="{LK}" rel="nofollow noopener">Получить ключ</a>
+<button class="hp-burger" aria-label="Меню" onclick="document.body.classList.toggle('hp-open')"><span></span><span></span><span></span></button>
+</div><div class="hp-mnav">{nav}</div></header>"""
 
 def cta(big=False):
-    cls = " vk-cta-big" if big else ""
-    return f"""<div class="vk-cta{cls}">
-<a class="vk-btn" href="{LK}">🔑 Получить ключ на email</a>
-<a class="vk-btn vk-btn-tg" href="{TG}">✈ Получить ключ в Telegram</a></div>"""
+    lg = " hp-btn-lg" if big else ""
+    return f"""<div class="hp-cta">
+<a class="hp-btn{lg}" href="{LK}" rel="nofollow noopener">Получить ключ на email</a>
+<a class="hp-btn hp-btn-tg{lg}" href="{TG}" rel="nofollow noopener">Получить в Telegram</a></div>"""
 
-def chips(cluster, n=40, title="Популярные запросы"):
+def chips(cluster, n=40, title="Что ищут пользователи о v2raytun"):
     ws = kws(cluster, n)
     if not ws: return ""
     items = "".join(f'<li>{esc(w)}</li>' for w in ws)
-    return f'<section class="vk-chips"><h2>{esc(title)}</h2><ul class="vk-chip-list">{items}</ul></section>'
+    return f'<section class="hp-chips"><div class="hp-wrap"><div class="hp-chips-head"><h2 class="hp-h2">{esc(title)}</h2><p>Популярные запросы по бренду v2raytun, под которые на сайте есть ответ.</p></div><div class="hp-chip-group"><ul class="hp-chip-list">{items}</ul></div></div></section>'
 
 def faq(items):
     rows = ""
     for q, a in items:
-        rows += f'<details class="vk-faq-i"><summary>{esc(q)}</summary><div>{a}</div></details>'
+        rows += f'<details class="hp-faq-i"><summary>{esc(q)}</summary><div>{a}</div></details>'
     import json as _j
     ld = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
         {"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":re.sub('<[^>]+>','',a)}} for q,a in items]}
-    return f'<section class="vk-faq"><h2>Частые вопросы</h2>{rows}</section><script type="application/ld+json">{_j.dumps(ld,ensure_ascii=False)}</script>'
+    return f'<section class="hp-sec"><div class="hp-wrap"><div class="hp-faq"><div class="hp-sec-head hp-sec-head--center"><span class="hp-eyebrow">FAQ</span><h2 class="hp-h2">Частые вопросы о v2raytun</h2></div>{rows}</div></div></section><script type="application/ld+json">{_j.dumps(ld,ensure_ascii=False)}</script>'
 
 def footer():
     cols = ""
     for title, links in FOOT:
         ls = "".join(f'<li><a href="{u}">{esc(t)}</a></li>' for t, u in links)
-        cols += f'<div class="vk-fcol"><h4>{esc(title)}</h4><ul>{ls}</ul></div>'
-    return f"""<footer class="vk-ftr"><div class="vk-wrap">
-<div class="vk-fgrid">
-<div class="vk-fbrand"><a class="vk-logo" href="/"><span class="vk-logo-mk">v2</span>raytun<span class="vk-logo-dot">·keys</span></a>
-<p>Ключи и конфигурации v2raytun для всех устройств. Быстрый доступ по email или в Telegram.</p>
+        cols += f'<div class="hp-fcol"><h4>{esc(title)}</h4><ul>{ls}</ul></div>'
+    return f"""<footer class="hp-ftr"><div class="hp-wrap">
+<div class="hp-fgrid">
+<div class="hp-fbrand"><a class="hp-logo" href="/"><span class="hp-logo-mark"></span><span class="hp-logo-tx">2rayhub<span class="hp-logo-dot">.</span></span></a>
+<p>Ключи и конфигурации v2raytun для всех устройств — ПК, Android, iPhone, Mac и Smart TV. Быстрый доступ по email или в Telegram.</p>
 {cta()}</div>{cols}</div>
-<div class="vk-fbot"><span>© 2026 2rayhub.com</span><span>v2raytun · ключи · конфиги · подписка</span></div>
+<div class="hp-fbot"><span>© 2026 2rayhub.com</span><span>v2raytun · ключи · конфиги · подписка</span></div>
 </div></footer></body></html>"""
 
 def bc_ld(pairs):
@@ -120,37 +120,40 @@ def bc_ld(pairs):
 
 def site_ld():
     import json as _j
-    org = {"@context":"https://schema.org","@type":"Organization","name":"v2ray2tun",
+    org = {"@context":"https://schema.org","@type":"Organization","name":"2rayhub",
            "url":BASE+"/","logo":BASE+"/og.png","description":"Ключи и конфигурации v2raytun для всех устройств."}
-    web = {"@context":"https://schema.org","@type":"WebSite","name":"v2ray2tun","url":BASE+"/","inLanguage":"ru"}
+    web = {"@context":"https://schema.org","@type":"WebSite","name":"2rayhub","url":BASE+"/","inLanguage":"ru"}
     return (f'<script type="application/ld+json">{_j.dumps(org,ensure_ascii=False)}</script>'
             f'<script type="application/ld+json">{_j.dumps(web,ensure_ascii=False)}</script>')
 
 def hero():
-    key = "vless://2b9f4c1a-7e3d-48a6-b1c2-9f8e7d6c5b4a@de1.2rayhub.com:443?security=reality&sni=cloudflare.com&type=tcp#v2raytun-key"
-    tops = " · ".join([t["q"] for t in TOP[:6]])
-    return f"""<section class="vk-hero"><div class="vk-wrap vk-hero-in">
-<div class="vk-hero-l">
-<span class="vk-tag">Ключи v2raytun · VLESS Reality</span>
-<h1>Ключи v2raytun — рабочие конфиги для всех устройств</h1>
-<p class="vk-lead">Получи готовый ключ v2raytun за минуту: вставил конфигурацию в приложение — и подключение работает. ПК, Android, iPhone, Mac и TV. Бесплатный пробный ключ и подписка без ограничений скорости.</p>
+    quick = [("Скачать","/skachat/"),("Ключи","/klyuchi/"),("Тарифы","#tarify"),("Настройка","/nastrojka/"),
+             ("Конфиги","/konfig/"),("Не работает","/oshibki/"),("GitHub","/github/"),("FAQ","/voprosy/")]
+    qn = "".join(f'<a href="{u}">{esc(t)}</a>' for t,u in quick)
+    dev = """<div class="hp-devices" aria-hidden="true">
+<div class="hp-dv"><div class="hp-dv-bar"><span class="hp-dv-dot r"></span><span class="hp-dv-dot y"></span><span class="hp-dv-dot g"></span><span class="hp-dv-ttl">Android</span></div>
+<div class="hp-dv-body"><div class="hp-dv-line">v2raytun.apk</div><div class="hp-dv-line k">vless://…@de1 · reality</div><div class="hp-dv-line">скорость: без лимита</div></div></div>
+<div class="hp-dv hp-dv-center"><div class="hp-dv-bar"><span class="hp-dv-dot r"></span><span class="hp-dv-dot y"></span><span class="hp-dv-dot g"></span><span class="hp-dv-ttl">v2raytun · подключение</span></div>
+<div class="hp-dv-body"><div class="hp-dv-st"><i></i><b>Подключено</b><span>42 ms</span></div>
+<div class="hp-dv-line k">ключ активен · VLESS Reality</div>
+<div class="hp-dv-line">sni: cloudflare.com · tcp</div>
+<div class="hp-dv-stat"><div><b>6</b><span>локаций</span></div><div><b>3</b><span>устройства</span></div><div><b>∞</b><span>трафик</span></div><div><b>1 мин</b><span>выдача</span></div></div></div></div>
+<div class="hp-dv"><div class="hp-dv-bar"><span class="hp-dv-dot r"></span><span class="hp-dv-dot y"></span><span class="hp-dv-dot g"></span><span class="hp-dv-ttl">iPhone</span></div>
+<div class="hp-dv-body"><div class="hp-dv-line">App Store · v2raytun</div><div class="hp-dv-line k">профиль импортирован</div><div class="hp-dv-line">статус: on</div></div></div></div>"""
+    return f"""<section class="hp-hero" id="hero"><div class="hp-wrap">
+<span class="hp-pill"><span class="hp-pill-dot"></span>Готовые ключи для v2raytun · VLESS Reality</span>
+<h1>v2raytun — рабочие ключи и конфиги <em>за минуту</em></h1>
+<p class="hp-lead">Получи готовый ключ v2raytun: вставил конфигурацию в приложение — и подключение работает. ПК (Windows 10/11), Android (APK), iPhone, Mac и Smart TV. Бесплатный пробный ключ — на email или в Telegram. Подписка без ограничений скорости — от 249 ₽.</p>
 {cta(big=True)}
-<div class="vk-trust"><span>⚡ Выдача за 1 минуту</span><span>🛡 VLESS Reality</span><span>♾ Без лимита скорости</span></div>
-</div>
-<div class="vk-hero-r">
-<div class="vk-keycard">
-<div class="vk-keycard-top"><span class="vk-dot"></span> ключ активен <span class="vk-kc-badge">Reality</span></div>
-<div class="vk-keystr"><code>{esc(key)}</code></div>
-<div class="vk-keycard-bot"><span>скопируй и вставь в v2raytun</span><span class="vk-kc-copy">Скопировать</span></div>
-</div>
-<div class="vk-hero-tags">{esc(tops)}</div>
-</div>
+<div class="hp-trust"><span>Выдача за 1 минуту</span><span>VLESS Reality</span><span>Без лимита скорости</span><span>Все устройства</span></div>
+<div class="hp-quicknav">{qn}</div>
+{dev}
 </div></section>"""
 
 def stat():
     cells = [("422k","ищут v2raytun в месяц"),("1 мин","выдача ключа"),("5","платформ"),("0 ₽","пробный ключ")]
-    c = "".join(f'<div class="vk-stat-i"><b>{a}</b><span>{esc(b)}</span></div>' for a,b in cells)
-    return f'<section class="vk-stat"><div class="vk-wrap vk-stat-in">{c}</div></section>'
+    c = "".join(f'<div class="hp-stats-i"><b>{esc(a)}</b><span>{esc(b)}</span></div>' for a,b in cells)
+    return f'<div class="hp-wrap"><div class="hp-stats"><div class="hp-stats-row">{c}</div></div></div>'
 
 def bento():
     cards = [
@@ -161,25 +164,41 @@ def bento():
         ("♾","Без лимитов","Полная скорость и безлимитный трафик на платной подписке."),
         ("🔄","Автообновление","Подписка обновляет серверы автоматически — ключ всегда рабочий."),
     ]
-    c = "".join(f'<div class="vk-bento-i"><span class="vk-bi-ic">{ic}</span><h3>{esc(t)}</h3><p>{esc(d)}</p></div>' for ic,t,d in cards)
-    return f'<section class="vk-sec"><div class="vk-wrap"><h2 class="vk-h2">Почему ключи v2raytun отсюда</h2><div class="vk-bento">{c}</div></div></section>'
+    c = "".join(f'<div class="hp-feat-i"><div class="hp-feat-ico">{ic}</div><div class="hp-feat-tx"><h3>{esc(t)}</h3><p>{esc(d)}</p></div></div>' for ic,t,d in cards)
+    return f'<section class="hp-sec"><div class="hp-wrap"><div class="hp-sec-head hp-sec-head--center"><span class="hp-eyebrow">Почему мы</span><h2 class="hp-h2">Почему ключи v2raytun отсюда</h2><p class="hp-sub">Готовая конфигурация, современный протокол и один ключ сразу на все устройства.</p></div><div class="hp-feat">{c}</div></div></section>'
 
-def platforms():
-    items = [("Скачать","/skachat/","💾"),("ПК / Windows","/na-pk/","🖥"),("Android / APK","/android/","🤖"),
-             ("iPhone / iOS","/ios/","📱"),("Mac","/mac/","🍎"),("Smart TV","/tv/","📺")]
-    c = "".join(f'<a class="vk-plat-i" href="{u}"><span>{ic}</span><b>{esc(t)}</b></a>' for t,u,ic in items)
-    return f'<section class="vk-sec"><div class="vk-wrap"><h2 class="vk-h2">v2raytun на твоё устройство</h2><div class="vk-plat">{c}</div></div></section>'
+def sections_grid():
+    items = [
+        ("/skachat/","💾","Скачать v2raytun","Клиент под свою систему за минуту"),
+        ("/na-pk/","💻","v2raytun на ПК","Скачать для Windows 10/11"),
+        ("/android/","🤖","v2raytun Android","APK для смартфона и планшета"),
+        ("/ios/","🍎","v2raytun iOS","Клиент для iPhone и iPad"),
+        ("/mac/","🖥️","v2raytun на Mac","macOS — Intel и Apple Silicon"),
+        ("/tv/","📺","v2raytun Smart TV","APK для Android-TV"),
+        ("/klyuchi/","🔑","Ключи v2raytun","Рабочие конфиги VLESS Reality"),
+        ("/konfig/","🧩","Конфигурации","Готовые конфиги без настройки"),
+        ("/podpiska/","🔁","Подписка","Автообновление серверов и ключей"),
+        ("/besplatno/","🆓","Бесплатно","Пробный ключ без оплаты"),
+        ("/nastrojka/","⚙️","Настройка","Как подключить за 4 шага"),
+        ("/oshibki/","🛠️","Не работает","Решение частых проблем"),
+        ("/proxy/","🌐","Прокси","VLESS Reality как прокси-туннель"),
+        ("/github/","🐙","GitHub","Официальные сборки приложения"),
+        ("/tarify/","💎","Тарифы","Месяц, 3, 6 месяцев и год"),
+        ("/voprosy/","❓","Вопросы","FAQ по ключам v2raytun"),
+    ]
+    c = "".join(f'<a class="hp-card hp-card-link" href="{u}"><span class="hp-card-ic">{ic}</span><h3>{esc(t)}</h3><p>{esc(d)}</p></a>' for u,ic,t,d in items)
+    return f'<section class="hp-sec"><div class="hp-wrap"><div class="hp-sec-head hp-sec-head--center"><span class="hp-eyebrow">Навигация</span><h2 class="hp-h2">Всё о v2raytun — выбери раздел</h2><p class="hp-sub">Скачать клиент под свою систему, получить ключ, настроить или решить проблему — каждой теме посвящена отдельная страница.</p></div><div class="hp-cards">{c}</div></div></section>'
 
 DL = {"ios":"https://apps.apple.com/app/v2raytun/id6476628951",
       "android":"https://play.google.com/store/apps/details?id=com.v2raytun.android",
       "github":"https://github.com/DigneZzZ/v2raytun/releases"}
 def downloads(title="Скачать приложение v2raytun", note=True):
-    btns = [("📱","App Store","iPhone и iPad",DL["ios"]),
+    btns = [("📱","App Store","iPhone · iPad",DL["ios"]),
             ("🤖","Google Play","Android",DL["android"]),
-            ("💻","GitHub Releases","Windows, Mac, Linux, APK",DL["github"])]
-    c = "".join(f'<a class="vk-dl-i" href="{u}" target="_blank" rel="nofollow noopener"><span class="vk-dl-ic">{ic}</span><b>{esc(t)}</b><small>{esc(s)}</small></a>' for ic,t,s,u in btns)
-    n = '<p class="vk-sub">Скачай официальное приложение под свою систему, затем нажми «Получить ключ» — конфигурация придёт за минуту.</p>' if note else ''
-    return f'<section class="vk-sec" id="download"><div class="vk-wrap"><h2 class="vk-h2">{esc(title)}</h2>{n}<div class="vk-dl">{c}</div></div></section>'
+            ("💻","GitHub","Windows · Mac · APK",DL["github"])]
+    c = "".join(f'<a class="hp-plat-i" href="{u}" target="_blank" rel="nofollow noopener"><span class="ic">{ic}</span><b>{esc(t)}</b><small>{esc(s)}</small></a>' for ic,t,s,u in btns)
+    n = '<p class="hp-sub">Скачай официальное приложение под свою систему, затем нажми «Получить ключ» — конфигурация придёт за минуту.</p>' if note else ''
+    return f'<section class="hp-sec hp-sec-tight" id="download"><div class="hp-wrap"><div class="hp-sec-head hp-sec-head--center"><span class="hp-eyebrow">Загрузка</span><h2 class="hp-h2">{esc(title)}</h2>{n}</div><div class="hp-plat hp-plat-3">{c}</div></div></section>'
 
 PLAN_FEATS = ["1 профиль на 3 устройства","6 локаций · Европа и США","Без лимита на трафик","Замена сервера бесплатно"]
 PLANS = [("На месяц","249 ₽","Стартовый","Базовая цена",PLAN_FEATS,False),
@@ -190,26 +209,28 @@ def tariffs():
     c=""
     for name,price,tier,econ,feats,hit in PLANS:
         fl="".join(f'<li>{esc(f)}</li>' for f in feats)
-        badge="<span class=vk-plan-badge>Чаще берут</span>" if hit else ""
-        c+=f'<div class="vk-plan{" vk-plan-hit" if hit else ""}">{badge}<div class="vk-plan-tier">{esc(tier)}</div><h3>{esc(name)}</h3><div class="vk-price">{esc(price)}</div><div class="vk-price-sub">{esc(econ)}</div><ul>{fl}</ul><a class="vk-btn vk-btn-block" href="{LK}">Купить ключ</a></div>'
+        badge='<span class="hp-plan-badge">Чаще берут</span>' if hit else ""
+        c+=f'<div class="hp-plan{" hp-plan-hit" if hit else ""}">{badge}<div class="hp-plan-tier">{esc(tier)}</div><h3>{esc(name)}</h3><div class="hp-price">{esc(price)}</div><div class="hp-price-sub">{esc(econ)}</div><ul>{fl}</ul><a class="hp-btn hp-btn-block" href="{LK}" rel="nofollow noopener">Купить ключ</a></div>'
     import json as _j
     ld={"@context":"https://schema.org","@type":"Product","name":"Ключ v2raytun","description":"Ключи и подписка v2raytun",
         "offers":{"@type":"AggregateOffer","priceCurrency":"RUB","lowPrice":"249","highPrice":"1890","offerCount":"4"}}
-    return f'<section class="vk-sec" id="tarify"><div class="vk-wrap"><h2 class="vk-h2">Тарифы на ключи v2raytun</h2><p class="vk-sub">Пробный ключ — бесплатно. Подписка — от 249 ₽.</p><div class="vk-plans">{c}</div></div></section><script type="application/ld+json">{_j.dumps(ld,ensure_ascii=False)}</script>'
+    return f'<section class="hp-sec" id="tarify"><div class="hp-wrap"><div class="hp-sec-head hp-sec-head--center"><span class="hp-eyebrow">Тарифы</span><h2 class="hp-h2">Тарифы на ключи v2raytun</h2><p class="hp-sub">Пробный ключ — бесплатно. Подписка — от 249 ₽: чем дольше период, тем дешевле.</p></div><div class="hp-plans">{c}</div></div></section><script type="application/ld+json">{_j.dumps(ld,ensure_ascii=False)}</script>'
 
 def page(slug, title, desc, h1, body, cluster=None, faqs=None, dl=False):
     path = "/" if slug == "" else f"/{slug}/"
     parts = [head(title, desc, path), header(), '<main>']
     if slug == "":
-        parts += [hero(), stat(), bento(), platforms(), downloads(), body, tariffs()]
+        parts += [hero(), stat(), bento(), tariffs(), sections_grid(), downloads()]
+        if body: parts.append(f'<section class="hp-sec hp-sec-tight"><div class="hp-wrap hp-prose">{body}</div></section>')
         if cluster: parts.append(chips(cluster))
     else:
-        parts.append(f'<section class="vk-page-h"><div class="vk-wrap"><nav class="vk-bc"><a href="/">Главная</a> / <span>{esc(h1)}</span></nav><h1>{esc(h1)}</h1></div></section>')
-        parts.append(f'<section class="vk-sec"><div class="vk-wrap vk-prose">{body}</div></section>')
+        parts.append(f'<section class="hp-page-h"><div class="hp-wrap"><nav class="hp-bc"><a href="/">Главная</a> <span class="sep">/</span> <span>{esc(h1)}</span></nav><h1>{esc(h1)}</h1></div></section>')
+        parts.append(f'<section class="hp-sec"><div class="hp-wrap hp-prose">{body}</div></section>')
+        if slug == "tarify": parts.append(tariffs())
         if dl: parts.append(downloads())
-        parts.append(f'<div class="vk-wrap">{cta(big=True)}</div>')
+        parts.append(midcta())
         if cluster: parts.append(chips(cluster))
-    if faqs: parts.append(f'<div class="vk-wrap">{faq(faqs)}</div>')
+    if faqs: parts.append(faq(faqs))
     if slug == "":
         parts.append(site_ld())
     else:
@@ -223,18 +244,23 @@ def page(slug, title, desc, h1, body, cluster=None, faqs=None, dl=False):
 def prose(*paras): return "".join(f"<p>{p}</p>" for p in paras)
 def h2(t): return f'<h2>{esc(t)}</h2>'
 def steps(items):
-    li="".join(f'<li><b>{esc(t)}</b> {esc(d)}</li>' for t,d in items)
-    return f'<ol class="vk-steps">{li}</ol>'
+    li="".join(f'<div class="hp-step"><div class="hp-step-n"></div><div class="hp-step-tx"><h3>{esc(t)}</h3><p>{esc(d)}</p></div></div>' for t,d in items)
+    return f'<div class="hp-steps">{li}</div>'
+def midcta():
+    return f"""<section class="hp-cta-mid"><div class="hp-cta-mid-in">
+<div class="hp-cta-mid-tx">Получи рабочий ключ v2raytun за минуту</div>
+<div class="hp-cta-mid-sub">Пробный ключ — бесплатно, на email или в Telegram. Подписка без лимита скорости — от 249 ₽.</div>
+{cta()}</div></section>"""
 
 PAGES = []
 # Главная
-PAGES.append(dict(slug="", title="Ключи v2raytun — скачать и получить конфиг | v2ray2tun",
+PAGES.append(dict(slug="", title="Ключи v2raytun — скачать и получить конфиг | 2rayhub",
     desc="Рабочие ключи v2raytun для ПК, Android, iPhone, Mac и TV. Бесплатный пробный ключ, конфигурации VLESS Reality, подписка от 249 ₽.",
     h1="", cluster="Общее",
-    body='<section class="vk-sec"><div class="vk-wrap vk-prose">'+prose(
+    body=prose(
         "<b>v2raytun</b> — это приложение-клиент для протокола VLESS/Reality, в которое нужно вставить ключ (конфигурацию) сервера. На 2rayhub.com ты получаешь рабочий ключ v2raytun сразу: на email или в Telegram. Не нужно искать конфиги по форумам — вставил строку в приложение и подключение готово.",
         "Ключи подходят для всех версий v2raytun: на ПК и Windows, на Android (APK), на iPhone и iPad, на Mac и Smart TV. Есть бесплатный пробный ключ, чтобы проверить скорость, и подписка без ограничений.")+
-        h2("Приложение v2raytun: куда вставить ключ")+prose("Приложение v2raytun — это клиент, который читает ключ-конфигурацию и устанавливает подключение. Скачай приложение под свою систему, вставь полученный ключ — и v2raytun сам поднимет соединение, без ручной настройки серверов.")+'</div></section>',
+        h2("Приложение v2raytun: куда вставить ключ")+prose("Приложение v2raytun — это клиент, который читает ключ-конфигурацию и устанавливает подключение. Скачай приложение под свою систему, вставь полученный ключ — и v2raytun сам поднимет соединение, без ручной настройки серверов."),
     faqs=[("Что такое ключ v2raytun?","Ключ — это строка-конфигурация вида <code>vless://…</code>, которую вставляют в приложение v2raytun. Она содержит адрес сервера и параметры подключения."),
           ("Где взять ключ v2raytun бесплатно?","Нажми «Получить ключ» — пробный ключ выдаётся бесплатно на email или в Telegram, без оплаты."),
           ("На каких устройствах работает?","На ПК/Windows, Android, iPhone/iOS, Mac и Smart TV. Один ключ можно использовать на нескольких устройствах.")]))
@@ -360,10 +386,7 @@ PAGES.append(dict(slug="proxy", title="v2raytun прокси — proxy-конф�
 PAGES.append(dict(slug="tarify", title="Тарифы v2raytun — цены на ключи и подписку",
     desc="Тарифы на ключи v2raytun: пробный ключ бесплатно, подписка от 249 ₽. На месяц, 3 месяца, полгода и год.",
     h1="Тарифы на ключи v2raytun", cluster="Ключи/конфиги/сервера",
-    body=prose("Пробный ключ v2raytun — бесплатно. Для постоянного использования выбери подписку: чем дольше период, тем дешевле месяц.")+
-        '<div class="vk-plans">'+"".join(
-            (lambda name,price,tier,econ,feats,hit: f'<div class="vk-plan{" vk-plan-hit" if hit else ""}">{"<span class=vk-plan-badge>Чаще берут</span>" if hit else ""}<div class="vk-plan-tier">{esc(tier)}</div><h3>{esc(name)}</h3><div class="vk-price">{esc(price)}</div><div class="vk-price-sub">{esc(econ)}</div><ul>{"".join(f"<li>{esc(f)}</li>" for f in feats)}</ul><a class="vk-btn vk-btn-block" href="{LK}">Купить ключ</a></div>')(*p)
-            for p in PLANS)+'</div>',
+    body=prose("Пробный ключ v2raytun — бесплатно. Для постоянного использования выбери подписку: чем дольше период, тем дешевле месяц.","Все тарифы включают один профиль на 3 устройства, 6 локаций (Европа и США), безлимитный трафик и бесплатную замену сервера."),
     faqs=[("Есть ли пробный период?","Да, пробный ключ выдаётся бесплатно до оплаты."),
           ("Как оплатить?","Оплата происходит в личном кабинете после получения ключа.")]))
 # Вопросы
@@ -383,8 +406,8 @@ def zaprosy_page():
     order=sorted(BYC.items(), key=lambda x:-sum(i['f'] for i in x[1]))
     for cl, items in order:
         li="".join(f'<li>{esc(i["q"])}</li>' for i in items)
-        blocks+=f'<div class="vk-zcol"><h3>{esc(cl)} <span>{len(items)}</span></h3><ul>{li}</ul></div>'
-    body=prose("Список самых частотных запросов по бренду v2raytun, по которым мы помогаем найти рабочие ключи и конфигурации. Сгруппировано по темам.")+f'<div class="vk-zgrid">{blocks}</div>'
+        blocks+=f'<div class="hp-chip-group"><h3>{esc(cl)}</h3><ul class="hp-chip-list">{li}</ul></div>'
+    body=prose("Список самых частотных запросов по бренду v2raytun, по которым мы помогаем найти рабочие ключи и конфигурации. Сгруппировано по темам.")+f'<div class="hp-zaprosy">{blocks}</div>'
     return dict(slug="zaprosy", title="Запросы v2raytun — список ключевых тем",
         desc="Частотные запросы по v2raytun: скачать, на пк, ключи, конфигурации, android, ios и другие темы по бренду.",
         h1="Популярные запросы v2raytun", body=body, cluster=None)
@@ -424,12 +447,12 @@ def article_page(a):
     ld = {"@context":"https://schema.org","@type":"BlogPosting","headline":a["title"],
           "datePublished":a["date"],"dateModified":a["date"],"description":a["desc"],
           "mainEntityOfPage":BASE+path,"inLanguage":"ru",
-          "author":{"@type":"Organization","name":"v2ray2tun"},
-          "publisher":{"@type":"Organization","name":"v2ray2tun"}}
+          "author":{"@type":"Organization","name":"2rayhub"},
+          "publisher":{"@type":"Organization","name":"2rayhub"}}
     parts = [head(a["title"], a["desc"], path, og_type="article"), header(), '<main>',
-        f'<section class="vk-page-h"><div class="vk-wrap"><nav class="vk-bc"><a href="/">Главная</a> / <a href="/blog/">Блог</a> / <span>{esc(a["title"])}</span></nav><span class="vk-bdate">{esc(a["date"])}</span><h1>{esc(a["title"])}</h1></div></section>',
-        f'<section class="vk-sec"><div class="vk-wrap vk-prose">{a["body"]}</div></section>',
-        f'<div class="vk-wrap">{cta(big=True)}</div>',
+        f'<section class="hp-page-h"><div class="hp-wrap"><nav class="hp-bc"><a href="/">Главная</a> <span class="sep">/</span> <a href="/blog/">Блог</a> <span class="sep">/</span> <span>{esc(a["title"])}</span></nav><h1>{esc(a["title"])}</h1><span class="hp-bdate">{esc(a["date"])}</span></div></section>',
+        f'<section class="hp-sec"><div class="hp-wrap hp-prose">{a["body"]}</div></section>',
+        midcta(),
         f'<script type="application/ld+json">{_j.dumps(ld,ensure_ascii=False)}</script>',
         bc_ld([("Главная",BASE+"/"),("Блог",BASE+"/blog/"),(a["title"],BASE+path)]),
         footer()]
@@ -441,14 +464,14 @@ def blog_index_page():
     import json as _j
     cards = ""
     for a in ARTICLES:
-        cards += f'<a class="vk-bcard" href="/blog/{a["slug"]}/"><span class="vk-bdate">{esc(a["date"])}</span><h3>{esc(a["title"])}</h3><p>{esc(a["excerpt"])}</p><span class="vk-blink">Читать →</span></a>'
+        cards += f'<a class="hp-card hp-card-link" href="/blog/{a["slug"]}/"><span class="hp-bdate">{esc(a["date"])}</span><h3>{esc(a["title"])}</h3><p>{esc(a["excerpt"])}</p><span class="hp-blink">Читать →</span></a>'
     ld = {"@context":"https://schema.org","@type":"Blog","name":"Блог v2raytun","url":BASE+"/blog/",
           "blogPost":[{"@type":"BlogPosting","headline":a["title"],"datePublished":a["date"],"url":BASE+f"/blog/{a['slug']}/"} for a in ARTICLES]}
     parts = [head("Блог v2raytun — статьи о ключах и настройке",
                   "Блог v2raytun: статьи о ключах, конфигурациях, настройке и подписке для всех устройств.","/blog/"),
         header(), '<main>',
-        '<section class="vk-page-h"><div class="vk-wrap"><nav class="vk-bc"><a href="/">Главная</a> / <span>Блог</span></nav><h1>Блог v2raytun</h1></div></section>',
-        f'<section class="vk-sec"><div class="vk-wrap"><div class="vk-blog-grid">{cards}</div></div></section>',
+        '<section class="hp-page-h"><div class="hp-wrap"><nav class="hp-bc"><a href="/">Главная</a> <span class="sep">/</span> <span>Блог</span></nav><h1>Блог v2raytun</h1></div></section>',
+        f'<section class="hp-sec"><div class="hp-wrap"><div class="hp-cards">{cards}</div></div></section>',
         f'<script type="application/ld+json">{_j.dumps(ld,ensure_ascii=False)}</script>',
         bc_ld([("Главная",BASE+"/"),("Блог",BASE+"/blog/")]),
         footer()]
@@ -456,153 +479,7 @@ def blog_index_page():
     open(os.path.join(d, "index.html"), "w", encoding="utf-8").write("\n".join(parts))
     return "/blog/"
 
-CSS = """
-:root{--bg:#0d0e12;--bg2:#15171e;--panel:#191c24;--line:#262a35;--tx:#e9eaf0;--mut:#9aa0ab;
---amb:#8b5cf6;--amb2:#7c3aed;--tg:#27a7e7;--rad:16px}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--tx);font:16px/1.65 'Onest',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:clip}
-a{color:inherit;text-decoration:none}
-.vk-wrap{max-width:1140px;margin:0 auto;padding:0 20px}
-h1{font-size:clamp(28px,5vw,46px);line-height:1.1;font-weight:800;letter-spacing:-.02em}
-h2{font-size:clamp(22px,3vw,30px);font-weight:700;letter-spacing:-.01em}
-h3{font-size:19px;font-weight:700}
-.vk-h2{text-align:center;margin-bottom:8px}
-.vk-sub{text-align:center;color:var(--mut);margin-bottom:28px}
-/* header */
-.vk-hdr{position:sticky;top:0;z-index:50;background:rgba(13,14,18,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.vk-hdr-in{display:flex;align-items:center;gap:18px;height:64px}
-.vk-logo{font-weight:800;font-size:20px;letter-spacing:-.02em}
-.vk-logo-mk{background:linear-gradient(135deg,var(--amb),var(--amb2));-webkit-background-clip:text;background-clip:text;color:transparent}
-.vk-logo-dot{color:var(--mut);font-weight:600;font-size:14px}
-.vk-nav{display:flex;gap:20px;margin-left:auto;font-size:15px;font-weight:500}
-.vk-nav a{color:var(--mut);transition:.15s}.vk-nav a:hover{color:var(--tx)}
-.vk-btn{display:inline-flex;align-items:center;gap:8px;justify-content:center;background:linear-gradient(135deg,var(--amb),var(--amb2));color:#1a1205;font-weight:700;padding:12px 20px;border-radius:12px;border:0;cursor:pointer;transition:.15s;white-space:nowrap}
-.vk-btn:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(124,58,237,.28)}
-.vk-btn-sm{padding:9px 16px;font-size:14px}
-.vk-btn-tg{background:linear-gradient(135deg,#2aa9e8,#1f7fc0);color:#fff}
-.vk-btn-block{width:100%}
-.vk-burger{display:none;margin-left:8px;background:0;border:0;flex-direction:column;gap:5px;cursor:pointer}
-.vk-burger span{width:24px;height:2px;background:var(--tx);border-radius:2px}
-.vk-mnav{display:none}
-/* hero */
-.vk-hero{padding:54px 0 36px;border-bottom:1px solid var(--line);background:radial-gradient(900px 420px at 78% -10%,rgba(124,58,237,.10),transparent 60%)}
-.vk-hero-in{display:grid;grid-template-columns:1.05fr .95fr;gap:42px;align-items:center}
-.vk-tag{display:inline-block;font-size:13px;font-weight:600;color:var(--amb);border:1px solid rgba(139,92,246,.3);background:rgba(139,92,246,.07);padding:6px 12px;border-radius:999px;margin-bottom:16px}
-.vk-lead{color:var(--mut);font-size:18px;margin:16px 0 24px;max-width:560px}
-.vk-cta{display:flex;gap:12px;flex-wrap:wrap}
-.vk-cta-big .vk-btn{padding:15px 24px;font-size:16px}
-.vk-trust{display:flex;gap:18px;flex-wrap:wrap;margin-top:20px;color:var(--mut);font-size:14px}
-.vk-keycard{background:linear-gradient(160deg,#1b1f29,#13151c);border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 24px 60px rgba(0,0,0,.45);position:relative;overflow:hidden}
-.vk-keycard:before{content:"";position:absolute;inset:0;background:radial-gradient(400px 120px at 90% 0,rgba(139,92,246,.14),transparent 60%);pointer-events:none}
-.vk-keycard-top{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mut);font-weight:600}
-.vk-dot{width:9px;height:9px;border-radius:50%;background:#3ddc8b;box-shadow:0 0 10px #3ddc8b}
-.vk-kc-badge{margin-left:auto;font-size:11px;color:var(--amb);border:1px solid rgba(139,92,246,.4);padding:2px 8px;border-radius:6px}
-.vk-keystr{margin:14px 0;background:#0c0d11;border:1px solid var(--line);border-radius:12px;padding:14px;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.6;color:#cfe3ff;word-break:break-all;max-height:120px;overflow:hidden}
-.vk-keystr code{color:#8fd0ff}
-.vk-keycard-bot{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--mut)}
-.vk-kc-copy{color:var(--amb);font-weight:600;border:1px solid rgba(139,92,246,.35);padding:5px 12px;border-radius:8px}
-.vk-hero-tags{margin-top:14px;color:var(--mut);font-size:12.5px;font-family:'JetBrains Mono',monospace;opacity:.8}
-/* stat */
-.vk-stat{border-bottom:1px solid var(--line)}
-.vk-stat-in{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding:26px 0}
-.vk-stat-i{text-align:center}.vk-stat-i b{display:block;font-size:26px;font-weight:800;color:var(--amb)}
-.vk-stat-i span{color:var(--mut);font-size:14px}
-/* sections */
-.vk-sec{padding:46px 0}
-.vk-bento{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
-.vk-bento-i{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad);padding:22px;transition:.15s}
-.vk-bento-i:hover{border-color:rgba(139,92,246,.4);transform:translateY(-2px)}
-.vk-bi-ic{font-size:26px}.vk-bento-i h3{margin:10px 0 6px}.vk-bento-i p{color:var(--mut);font-size:14.5px}
-.vk-plat{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:24px}
-.vk-plat-i{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 10px;text-align:center;transition:.15s}
-.vk-plat-i:hover{border-color:rgba(139,92,246,.4);color:var(--amb)}
-.vk-plat-i span{font-size:24px;display:block;margin-bottom:8px}.vk-plat-i b{font-size:14px;font-weight:600}
-/* tariffs */
-.vk-plans{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
-.vk-plan{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad);padding:24px 20px;position:relative;display:flex;flex-direction:column}
-.vk-plan-hit{border-color:var(--amb);box-shadow:0 0 0 1px var(--amb),0 18px 40px rgba(124,58,237,.16)}
-.vk-plan-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--amb),var(--amb2));color:#fff;font-size:12px;font-weight:700;padding:4px 14px;border-radius:999px;white-space:nowrap}
-.vk-plan-tier{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--amb);margin-bottom:4px}
-.vk-plan h3{font-size:19px}
-.vk-price{font-size:32px;font-weight:800;margin:8px 0 2px}.vk-price-sub{color:#7ee0a8;font-size:13px;font-weight:600;margin-bottom:16px}
-.vk-plan:first-child .vk-price-sub{color:var(--mut);font-weight:500}
-/* downloads */
-.vk-dl{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
-.vk-dl-i{display:flex;flex-direction:column;align-items:flex-start;gap:2px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px 22px;transition:.15s}
-.vk-dl-i:hover{border-color:var(--amb);transform:translateY(-2px);box-shadow:0 14px 30px rgba(124,58,237,.14)}
-.vk-dl-ic{font-size:30px;margin-bottom:6px}
-.vk-dl-i b{font-size:17px}.vk-dl-i small{color:var(--mut);font-size:13px}
-.vk-plan ul{list-style:none;margin:0 0 18px}.vk-plan li{padding:7px 0 7px 24px;position:relative;font-size:14.5px;border-bottom:1px solid var(--line)}
-.vk-plan li:before{content:"✓";position:absolute;left:0;color:var(--amb);font-weight:700}
-.vk-plan .vk-btn-block{margin-top:auto}
-/* page */
-.vk-page-h{padding:40px 0 8px;border-bottom:1px solid var(--line);background:radial-gradient(700px 300px at 80% -20%,rgba(124,58,237,.08),transparent)}
-.vk-bc{font-size:13px;color:var(--mut);margin-bottom:12px}.vk-bc a{color:var(--amb)}
-.vk-prose{max-width:780px}.vk-prose p{margin:0 0 16px;color:#cfd2db}.vk-prose h2{margin:30px 0 12px}
-.vk-prose code{background:#0c0d11;border:1px solid var(--line);padding:1px 6px;border-radius:5px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--amb)}
-.vk-steps{counter-reset:s;list-style:none;margin:8px 0 8px}
-.vk-steps li{counter-increment:s;position:relative;padding:12px 0 12px 44px;border-bottom:1px solid var(--line);color:var(--mut)}
-.vk-steps li b{color:var(--tx)}
-.vk-steps li:before{content:counter(s);position:absolute;left:0;top:12px;width:28px;height:28px;border-radius:8px;background:rgba(139,92,246,.12);color:var(--amb);font-weight:700;display:grid;place-items:center;font-size:14px}
-/* chips */
-.vk-chips{max-width:1140px;margin:0 auto;padding:10px 20px 46px}
-.vk-chips h2{margin-bottom:16px;font-size:22px}
-.vk-chip-list{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
-.vk-chip-list li{background:var(--panel);border:1px solid var(--line);color:var(--mut);font-size:13.5px;padding:7px 13px;border-radius:999px}
-/* zaprosy */
-.vk-zgrid{columns:3;column-gap:18px;margin-top:8px}
-.vk-zcol{break-inside:avoid;margin-bottom:18px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
-.vk-zcol h3{font-size:15px;color:var(--amb);margin-bottom:8px;display:flex;justify-content:space-between}
-.vk-zcol h3 span{color:var(--mut);font-weight:500}
-.vk-zcol ul{list-style:none}.vk-zcol li{font-size:13px;color:var(--mut);padding:3px 0;border-bottom:1px solid rgba(38,42,53,.6)}
-/* faq */
-.vk-faq{max-width:820px;margin:10px auto 30px}
-.vk-faq h2{margin-bottom:16px}
-.vk-faq-i{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin-bottom:10px;padding:0 18px}
-.vk-faq-i summary{cursor:pointer;padding:15px 0;font-weight:600;list-style:none;display:flex;justify-content:space-between;align-items:center}
-.vk-faq-i summary:after{content:"⌄";color:var(--amb);font-size:20px;transition:.2s}
-.vk-faq-i[open] summary:after{transform:rotate(180deg)}
-.vk-faq-i div{padding:0 0 16px;color:var(--mut);font-size:15px}
-.vk-faq-i code{color:var(--amb);font-family:'JetBrains Mono',monospace;font-size:13px}
-/* footer */
-.vk-ftr{border-top:1px solid var(--line);background:#0a0b0e;padding:44px 0 24px;margin-top:20px}
-.vk-fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px}
-.vk-fbrand p{color:var(--mut);font-size:14px;margin:12px 0 16px;max-width:300px}
-.vk-fbrand .vk-cta{flex-direction:column}.vk-fbrand .vk-btn{width:100%}
-.vk-fcol h4{font-size:14px;margin-bottom:12px}.vk-fcol ul{list-style:none}
-.vk-fcol li{margin-bottom:8px}.vk-fcol a{color:var(--mut);font-size:14px}.vk-fcol a:hover{color:var(--amb)}
-.vk-fbot{display:flex;justify-content:space-between;color:var(--mut);font-size:13px;border-top:1px solid var(--line);margin-top:30px;padding-top:18px}
-/* mobile */
-@media(max-width:900px){
- .vk-nav{display:none}.vk-burger{display:flex}
- .vk-hdr{background:#0d0e12;backdrop-filter:none}
- body.vk-open .vk-mnav{background:#0d0e12}
- .vk-hero-in{grid-template-columns:1fr;gap:28px}
- .vk-bento{grid-template-columns:1fr}
- .vk-plans{grid-template-columns:repeat(2,1fr)}
- .vk-dl{grid-template-columns:1fr}
- .vk-plat{grid-template-columns:repeat(3,1fr)}
- .vk-stat-in{grid-template-columns:repeat(2,1fr);gap:22px}
- .vk-fgrid{grid-template-columns:1fr 1fr}
- .vk-zgrid{columns:1}
- .vk-plan-hit{transform:none}
- body.vk-open .vk-mnav{display:flex;flex-direction:column;border-top:1px solid var(--line);padding:8px 20px 14px}
- body.vk-open .vk-mnav a{padding:11px 0;color:var(--mut);border-bottom:1px solid var(--line)}
- .vk-hdr .vk-btn-sm{display:none}
-}
-/* blog */
-.vk-blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.vk-bcard{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad);padding:22px;display:flex;flex-direction:column;gap:8px;transition:.15s}
-.vk-bcard:hover{border-color:rgba(139,92,246,.4);transform:translateY(-2px)}
-.vk-bdate{font-size:12.5px;color:var(--mut);font-family:'JetBrains Mono',monospace}
-.vk-bcard h3{font-size:18px;line-height:1.3}
-.vk-bcard p{color:var(--mut);font-size:14.5px;flex:1;margin:0}
-.vk-blink{color:var(--amb);font-weight:600;font-size:14px}
-.vk-page-h .vk-bdate{display:block;margin-bottom:8px}
-@media(max-width:560px){.vk-plat{grid-template-columns:repeat(2,1fr)}.vk-plans{grid-template-columns:1fr}.vk-fbot{flex-direction:column;gap:6px}.vk-fgrid{grid-template-columns:1fr;gap:22px}}
-@media(max-width:900px){.vk-blog-grid{grid-template-columns:1fr}}
-"""
+CSS = open(os.path.join(ROOT,"style_v3.css"),encoding="utf-8").read()
 
 FAVICON = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8b5cf6"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="#0d0e12"/><circle cx="24" cy="28" r="11" fill="none" stroke="url(#g)" stroke-width="5"/><path d="M31 33 L48 50 M44 46 l6 -6 M40 42 l5 -5" stroke="url(#g)" stroke-width="5" stroke-linecap="round" fill="none"/></svg>'''
 
